@@ -4,14 +4,23 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import pandas as pd
+import os
+
+# Build the correct path to the file regardless of where the script is run
+benin_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data', 'benin-malanville_clean.csv'))
+sierra_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data', 'sierraleone-bumbuna_clean.csv'))
+togo_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data', 'togo-dapaong_qc_clean.csv'))
+
+
 
 st.set_page_config(layout="wide")
 
 @st.cache_data
 def load_data():
-    benin = pd.read_csv("../data/benin-malanville_clean.csv")
-    sierra = pd.read_csv("../data/sierraleone-bumbuna_clean.csv")
-    togo = pd.read_csv("../data/togo-dapaong_qc_clean.csv")
+    benin = pd.read_csv(benin_file_path)
+    sierra = pd.read_csv(sierra_file_path)
+    togo = pd.read_csv(togo_file_path)
 
     benin["Country"] = "Benin"
     sierra["Country"] = "Sierra Leone"
